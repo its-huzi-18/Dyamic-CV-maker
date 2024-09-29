@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Page</title>
+    <script type="module" src="formScript.js" defer></script>
+    <link rel="stylesheet" href="form.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    
+    <form id="personalInfoForm">
+        <div class="upper">
+            <!-- Form Fields -->
+            <div class="name">
+                <label for="updateName">Full Name:</label><br>
+                <input type="text" id="updateName" placeholder="Enter your Name" data-required="true">
+            </div><br>
+            
+            <div class="email">
+                <label for="updateEmail">Email:</label><br>
+                <input type="email" id="updateEmail" placeholder="Enter your Email" data-required="true">
+            </div><br>
+            
+            <div class="number">
+                <label for="updateNumber">Contact:</label><br>
+                <input type="tel"  id="updateNumber" placeholder="Enter Your Number" data-required="true"><br>
+                <span id="errorupdateNumber" class="error-message"></span> <!-- Error message container -->
+            </div><br>
+            
+            <div class="about">
+                <label for="updateAbout">About Me:</label><br>
+                <textarea id="updateAbout" rows="7" cols="34" placeholder="Tell us about yourself..." data-required="true"></textarea>
+            </div><br>
+            
+            <div id="skillsForm">
+                <h3>Enter Skills and their Percentages</h3>
+                <div id="skillsContainer">
+                    <!-- Skills will be added dynamically here -->
+                </div>
+                <button type="button" id="addSkillBtn">+ Add Skill</button>
+            </div><br>
+            
+            <div class="image">
+                <label for="updateImage">Resume Image <span style="font-size: 80%;color:blue;">(optional)</span> </label><br>
+                <div class="photoImg">
+                    <img src="/IMages/user-images_9795166.png" alt="" width="6%"><br>
+                </div>
+                <input type="file" accept="image/*" id="updateImage"><br><br>
+            </div>
+            
+            <div class="education">
+                <label for="updateEducation">Qualification:</label><br>
+                <select id="updateEducation" data-required="true">
+                    <option value="">Select your qualification</option>
+                    <option value="Matric">Matric</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Graduated">Graduated</option>
+                    <option value="Bachelor">Bachelor</option>
+                    <option value="Master">Master</option>
+                </select><br>
+                
+                <label for="updateFrom">From:</label><br>
+                <input type="text" id="updateFrom" placeholder="Enter your Institution" data-required="true"><br>
+                
+                <label for="updateStartYear">Start Year:</label><br>
+                <input type="number" id="updateStartYear" min="1950" max="2024" data-required="true"><br>
+                
+                <label for="updateEndYear">End Year:</label><br>
+                <input type="number" id="updateEndYear" min="1950" max="2024" data-required="true"><br><br>
+                
+                <div class="current-education">
+                    <label for="updatepreEducation">Current Educational Status:</label><br>
+                    <input type="text" id="updatepreEducation" placeholder="Enter your Current Education" data-required="true"><br>
+                    
+                    <label for="updatePresentFrom">From:</label><br>
+                    <input type="text" id="updatePresentFrom" placeholder="Enter your institute name" data-required="true"><br>
+                    
+                    <label for="updateYear">Year:</label><br>
+                    <input type="number" id="updateYear" min="1900" max="2100" data-required="true">
+                </div><br>
+                <div class="resumeLogo">
+                    <img src="/IMages/Resume logo.png" alt="" width="40%">
+                    <div id="typingText" class="typing-text">Huzaifa Resume</div>
+                </div>
+            </div>
+        </div>
+        <div class="social-media">
+            <label for="socialMediaLinks" class="social-label">Social Media Links</label><br><br>
+            
+            <label for="updateLinkedinLink" class="socialMedia label-title">LinkedIn</label><br>
+            <label for="updateLinkedinLink" class="socialMedia">
+                <span class="blue-text">Link:</span> <span class="optional-text">(optional)</span>
+            </label><br>
+            <input type="url" placeholder="Enter your LinkedIn link" id="updateLinkedinLink"><br>
+            <label for="updateLinkedinName">
+                <span class="bold-text">Username</span> <span class="optional-text">(optional)</span>
+            </label><br>
+            <input type="text" placeholder="Enter your Username" id="updateLinkedinName"><br><br>
+            
+            <label for="updateFbLink" class="label-title">Facebook</label><br>
+            <label for="updateFbLink">
+                <span class="blue-text">Link:</span> <span class="optional-text">(optional)</span>
+            </label><br>
+            <input type="url" placeholder="Enter your Fb link" id="updateFbLink"><br>
+            <label for="updateFbUserName">
+                <span class="bold-text">Username</span> <span class="optional-text">(optional)</span>
+            </label><br>
+            <input type="text" placeholder="Enter your Username" id="updateFbUserName"><br><br>
+            
+            <label for="updateGitLink" class="label-title">Github</label><br>
+            <label for="updateGitLink">
+                <span class="blue-text">Link:</span> <span class="optional-text">(optional)</span>
+            </label><br>
+            <input type="url" placeholder="Enter your Github link" id="updateGitLink"><br><br>
+            <div class="submitBtn-section">
+                <button type="submit" id="submitBtn">Submit</button>
+            </div>
+        </div>
+        
+    </form>
+</body>
+</html>
