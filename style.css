@@ -29,7 +29,7 @@ html {
 
 body {
 	margin: 0;
-	padding: 2rem 0.5rem;
+	padding: 2rem 2rem;
 	min-height: 100vh;
 	background-color: var(--color-gray-light-3);
 }
@@ -266,6 +266,11 @@ letter-spacing: 1.1px;
 
 /* Programming skills section */
 
+.skill-item{
+padding: 6px 0;
+}
+
+
 .pg-list, .tool-list, .favor-list {
 	padding: 0;
 	list-style: none;
@@ -295,9 +300,6 @@ letter-spacing: 1.1px;
 	background-color: var(--profile-theme);
 	
 }
-
-
-
 .tool-list {
 	list-style: none;
 	display: flex;
@@ -348,12 +350,80 @@ letter-spacing: 1.1px;
 	font-size: 1rem;
 	transform: translate(-50%, -50%);
 }
+/* Working Expereince  */
+.company{
+	margin: 0 2%;
+	border-radius: 4px;
+	color: #00387f;
+	display: flex;
+	justify-content:space-around;
+}
+
+#companyNameH4{
+	color:#00a6a6;
+}
+#moreExperienceSection{
+	margin: 1.2rem 0;
+}
+.companyDetail p{
+	font-size: 0.9rem;
+	color:darkslategray;
+}
+.companyDetail{
+	width: 15rem;
+}
+.companyNameSection i{
+	padding: 20px;
+font-size:3.4rem;
+}
+.companyNameSection i:hover{
+	font-size: 4rem;
+}
+.year{
+	margin: 0.8rem 2%;
+	border-radius: 4px;
+	padding: 0.2rem 0;
+	text-align: center;
+	color: red;
+	font-weight: 600;
+	font-size: 1rem;
+}
+/* Language section  */
+.language-section{
+	display: flex;
+	flex-direction: column;
+gap: 18px;
+}
+.language-section h3{
+	color: blue;
+	font-weight: bold;
+	margin-bottom: -6px;
+}
+
+.language-item{
+	padding: 14px;
+	border-bottom:1px solid var(--color-gray-dark-2) ;
+}
+.language-names{
+	margin: 6px 0;
+}
+.profenciency{
+	font-size: 0.93rem;
+	color: #00387f;
+	font-weight: 600;
+}
+.language-names{
+	font-weight: 500;
+	color:var(--color-gray-dark-1);
+}
+
 /* Interests Section */
 .outer-frame {
 	border: 1px solid var(--color-gray-dark-3);
 	border-radius: 5px;
 }
 .favor-list {
+	gap: 20px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
@@ -384,7 +454,15 @@ letter-spacing: 1.1px;
 .favor-list > li > span {
 	letter-spacing: 1px;
 }
-
+.outer-frame li{
+	text-align: center;
+}
+.outer-frame li span{
+	font-size: 0.8rem;
+}
+.outer-frame{
+padding: 0 2rem;
+}
 
 .editButton{
 	margin-bottom: 0.5%;
@@ -405,8 +483,9 @@ letter-spacing: 1.1px;
 }
 
 #editBtn{
+	border: none;
 	background-color: red;
-	padding: 0.61vw 16px;
+	padding: 0.41vw 16px;
 }
 #saveBtn{
 	background-color: green;

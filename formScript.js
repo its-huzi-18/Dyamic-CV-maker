@@ -1,4 +1,5 @@
 var _a;
+// OLd wala 
 // Select input fields and buttons
 const inputElement = document.querySelector('#updateName');
 const emailElement = document.querySelector("#updateEmail");
@@ -17,6 +18,63 @@ const LinkedinUserNameInput = document.querySelector("#updateLinkedinName");
 const facebookLinkInput = document.querySelector("#updateFbLink");
 const facebookUserName = document.querySelector("#updateFbUserName");
 const githubLinkInput = document.querySelector("#updateGitLink");
+const experienceButton = document.querySelector("#expBtn");
+const addMoreExperience = document.querySelector("#moreExperience");
+const languageSection = document.querySelector("#langaugeContainer");
+const addLanguageBtn = document.querySelector("#langaugeAddbtn");
+//Language Function
+let languageCount = 0;
+function addLanguages() {
+    languageCount++;
+    const languageDiv = document.createElement('div');
+    languageDiv.className = 'languages';
+    languageDiv.innerHTML = `
+    <label for="langauge${languageCount}">Language${languageCount}</label><br>    
+              <select name="language${languageCount}" id="language${languageCount}" required="true">
+                    <option value="">Select Language</option>
+                    <option value="english">English</option>
+                    <option value="urdu">Urdu</option>
+                    <option value="spanish">Spanish</option>
+                    <option value="french">French</option>
+                    <option value="german">German</option>
+                    <option value="chinese">Chinese</option>
+                    <option value="arabic">Arabic</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="japanese">Japanese</option>
+                </select><br>
+                <label for="proficiency${languageCount}">Proficiency${languageCount}</label><br>  
+                <select name="proficiency${languageCount}" id="proficiency${languageCount}" required="true">
+                    <option value="">Select Proficiency</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="proficient">Proficient</option>
+                    <option value="fluent">Fluent</option>
+                    <option value="native">Native</option>
+                </select>
+    `;
+    languageSection === null || languageSection === void 0 ? void 0 : languageSection.appendChild(languageDiv);
+}
+// Experience Function 
+let addExperienceCount = 0;
+function addExperience() {
+    addExperienceCount++;
+    const experienceDiv = document.createElement('div');
+    experienceDiv.className = `experience`;
+    experienceDiv.innerHTML = `
+        <label for="companyName${addExperienceCount}" class="form-label">Company Name</label>
+        <input type="text" id="companyName${addExperienceCount}" placeholder="Enter Your Company Name" required class="form-input"><br>
+
+        <label for="workExperience${addExperienceCount}">Working Experience</label><br>
+        <textarea name="Experience" id="experience${addExperienceCount}" placeholder="Enter Your Experience" data-required="true" rows="5" cols="24" class="form-input"></textarea><br>
+
+        <label for="expStartYear${addExperienceCount}">Start Year</label>
+        <input type="number" min="2000" max="2024" data-required="true" id="expStartYear${addExperienceCount}" class="form-input">
+
+        <label for="expEndYear${addExperienceCount}">End Year</label>
+        <input type="number" min="2000" max="2024" data-required="true" id="expEndYear${addExperienceCount}" class="form-input">
+    `;
+    addMoreExperience === null || addMoreExperience === void 0 ? void 0 : addMoreExperience.appendChild(experienceDiv);
+}
 // Select the container for skill inputs and the add button
 const skillsContainer = document.querySelector('#skillsContainer');
 const addSkillBtn = document.querySelector('#addSkillBtn');
@@ -121,9 +179,11 @@ function validateForm() {
     }
     return isValid;
 }
+// Clear local storage to remove old data
+localStorage.clear();
 // Function to handle form submission
 function handleSubmit(event) {
-    var _a, _b;
+    var _a, _b, _c, _d, _e, _f, _g, _h;
     event.preventDefault(); // Prevent default form submission behavior
     if (validateForm()) {
         // Save input values to local storage
@@ -159,14 +219,47 @@ function handleSubmit(event) {
                 localStorage.setItem(`skillPercent${i}`, skillPercent);
             }
         }
+        // Save each experience and its details to localStorage
+        for (let i = 1; i <= addExperienceCount; i++) {
+            const companyName = (_c = (document.querySelector(`#companyName${i}`))) === null || _c === void 0 ? void 0 : _c.value.trim();
+            const experience = (_d = (document.querySelector(`#experience${i}`))) === null || _d === void 0 ? void 0 : _d.value.trim();
+            const expStartYear = (_e = (document.querySelector(`#expStartYear${i}`))) === null || _e === void 0 ? void 0 : _e.value.trim();
+            const expEndYear = (_f = (document.querySelector(`#expEndYear${i}`))) === null || _f === void 0 ? void 0 : _f.value.trim();
+            if (companyName && experience && expStartYear && expEndYear) {
+                localStorage.setItem(`companyName${i}`, companyName);
+                localStorage.setItem(`experience${i}`, experience);
+                localStorage.setItem(`expStartYear${i}`, expStartYear);
+                localStorage.setItem(`expEndYear${i}`, expEndYear);
+            }
+        }
+        // Save each langugaes and its profencieny to localStorage
+        for (let i = 1; i <= languageCount; i++) {
+            const languageSelect = (_g = document.querySelector(`#language${i}`)) === null || _g === void 0 ? void 0 : _g.value;
+            const proficiencySelect = (_h = document.querySelector(`#proficiency${i}`)) === null || _h === void 0 ? void 0 : _h.value;
+            if (languageSelect && proficiencySelect) {
+                localStorage.setItem(`languageSelect${i}`, languageSelect);
+                localStorage.setItem(`proficiencySelect${i}`, proficiencySelect);
+            }
+        }
         // Redirect to the display page
         window.location.href = 'display.html';
     }
 }
+// Attach event listener to form submit
+const formElement = document.querySelector('#personalInfoForm');
+formElement === null || formElement === void 0 ? void 0 : formElement.addEventListener('submit', handleSubmit);
 // Add event listener to the "Add Skill" button
 addSkillBtn === null || addSkillBtn === void 0 ? void 0 : addSkillBtn.addEventListener('click', addSkillInput);
+// Attach event listener to add experience button
+experienceButton === null || experienceButton === void 0 ? void 0 : experienceButton.addEventListener("click", addExperience);
+// Attach event listener to add language button
+addLanguageBtn === null || addLanguageBtn === void 0 ? void 0 : addLanguageBtn.addEventListener('click', addLanguages);
+// Initial call to add the first experience input field
+addExperience();
 // Initial call to add the first skill input field
 addSkillInput();
+// Initial call to add the first langugae input field
+addLanguages();
 // Add event listener to the form submission
 (_a = document.querySelector('#personalInfoForm')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', handleSubmit);
 // Typing effect script

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Page</title>
     <script type="module" src="formScript.js" defer></script>
-    <link rel="stylesheet" href="form.css"> <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="form.css"> 
 </head>
 <body>
     
@@ -25,7 +25,7 @@
             <div class="number">
                 <label for="updateNumber">Contact:</label><br>
                 <input type="tel"  id="updateNumber" placeholder="Enter Your Number" data-required="true"><br>
-                <span id="errorupdateNumber" class="error-message"></span> <!-- Error message container -->
+                <span id="errorupdateNumber" class="error-message"></span> 
             </div><br>
             
             <div class="about">
@@ -78,12 +78,24 @@
                     
                     <label for="updateYear">Year:</label><br>
                     <input type="number" id="updateYear" min="1900" max="2100" data-required="true">
-                </div><br>
-                <div class="resumeLogo">
-                    <img src="/IMages/Resume logo.png" alt="" width="40%">
-                    <div id="typingText" class="typing-text">Huzaifa Resume</div>
                 </div>
-            </div>
+                <div class="workSection">
+
+                </div>
+                    <div id="moreExperience">
+                    <!-- add dynamically skills  -->
+                    </div><br>
+                    <button id="expBtn">Add Experience</button>
+                    <br><br>
+                    <div id="langaugeContainer">
+                     <!-- Add langauge dynamically -->
+                    </div>
+        <button id="langaugeAddbtn">Add Language</button>
+       </div>
+       <div class="resumeLogo">
+           <img src="/IMages/Resume logo.png" alt="" width="40%">
+           <div id="typingText" class="typing-text">Huzaifa Resume</div>
+       </div>
         </div>
         <div class="social-media">
             <label for="socialMediaLinks" class="social-label">Social Media Links</label><br><br>

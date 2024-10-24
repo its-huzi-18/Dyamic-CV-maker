@@ -1,3 +1,23 @@
+// Interfaces for skills and experiences
+interface Skill {
+    name: string;
+    percentage: number;
+}
+
+interface Experience {
+    title: string;
+    duration: string;
+}
+interface Language {
+    languages: string; // Change to 'languages' if this is what you intend to store
+    proficiency: number; // Change 'duration' to 'proficiency' to match what you're storing
+}
+
+
+// Sample data (you can populate this from localStorage)
+let skills: Skill[] = [];
+let experiences: Experience[] = [];
+let languages: Language[] = [];
 
 // Helper function to get localStorage data
 function getDataFromStorage(key: string, defaultValue: string = ""): string {
@@ -10,16 +30,18 @@ export function loadSkills() {
     if (!skillsList) return;
 
     skillsList.innerHTML = ''; // Clear existing skills
+    skills = []; // Reset skills array for fresh load
 
     let i = 1;
     while (localStorage.getItem(`skillName${i}`)) {
-        const skillName = localStorage.getItem(`skillName${i}`);
-        const skillPercent = localStorage.getItem(`skillPercent${i}`);
+        const skillName = getDataFromStorage(`skillName${i}`);
+        const skillPercent = getDataFromStorage(`skillPercent${i}`);
 
         if (skillName && skillPercent) {
+            skills.push({ name: skillName, percentage: parseInt(skillPercent) });
             // Create skill item dynamically
             const skillItem = document.createElement('div');
-            skillItem.className = `skill-item`;
+            skillItem.className = 'skill-item';
             skillItem.innerHTML = `
                 <div class="skill-name">${skillName.toUpperCase()}</div>
                 <div class="sb-skeleton">
@@ -31,10 +53,96 @@ export function loadSkills() {
         i++;
     }
 }
+export function loadLanguages() {
+    const languageList = document.getElementById("languageList");
+    if (!languageList) return;
+
+    languageList.innerHTML = ``;
+    const languages: Language[] = [];  // Correctly initializing the languages array
+    let i = 1;
+
+    while (localStorage.getItem(`languageSelect${i}`)) {
+        const languageName = getDataFromStorage(`languageSelect${i}`);
+        const proficiencyName = getDataFromStorage(`proficiencySelect${i}`);
+        
+        if (languageName && proficiencyName) {
+            // Add the language and proficiency to the array
+            languages.push({
+                languages: languageName,  // Ensure this matches the updated 'Language' interface
+                proficiency: parseInt(proficiencyName)  // Ensure proficiency is a number
+            });
+                // Create skill item dynamically
+                const languageItem = document.createElement('div');
+                languageItem.className = 'language-item';
+                languageItem.innerHTML = `
+                    <div class="language-names">${languageName.toUpperCase()}</div>
+                    <div class="profenciency-names">
+                        <div class="profenciency"">${proficiencyName.toUpperCase()}</div>
+                    </div>
+                `;
+                languageList.appendChild(languageItem);
+                
+        }
+        i++;
+    }
+
+}
+
+// Function to load experiences from localStorage
+export function loadExperiences() {
+    const experiencesList = document.getElementById('moreExperienceSection');
+    if (!experiencesList) return;
+
+    experiencesList.innerHTML = ''; // Clear existing experiences
+    experiences = []; // Reset experiences array for fresh load
+
+    let i = 1;
+    while (localStorage.getItem(`companyName${i}`)) {
+        const companyName = getDataFromStorage(`companyName${i}`);
+        const experienceDetail = getDataFromStorage(`experience${i}`);
+        const startYear = getDataFromStorage(`expStartYear${i}`);
+        const endYear = getDataFromStorage(`expEndYear${i}`);
+
+        if (companyName && experienceDetail && startYear && endYear) {
+            experiences.push({ title: companyName, duration: `${startYear} - ${endYear}` });
+
+            // Create experience item dynamically
+            const experienceItem = document.createElement('div');
+
+            // Create the year section
+            const yearDiv = document.createElement('div');
+            yearDiv.className = 'year';
+            yearDiv.innerHTML = `
+                <hr>
+                <br>
+                <span>${startYear}</span> - <span>${endYear}</span>
+            `;
+
+            // Create the company section
+            const companyDiv = document.createElement('div');
+            companyDiv.className = 'company';
+            companyDiv.innerHTML = `
+                <div class="companyNameSection">
+                    <h4>Company Name</h4>
+                    <i class="fas fa-city"></i>
+                </div>
+                <div class="companyDetail">
+                    <h4>${companyName}</h4>
+                    <p>${experienceDetail}</p>
+                </div>
+            `;
+
+            // Append year and company sections to the experience item
+            experienceItem.appendChild(yearDiv);
+            experienceItem.appendChild(companyDiv);
+            experiencesList.appendChild(experienceItem);
+        }
+        i++;
+    }
+}
 
 // Update profile section
 export function updateProfileDisplay() {
-
     document.getElementById('displayName')!.textContent = getDataFromStorage('userName');
     document.getElementById('aboutSection')!.textContent = getDataFromStorage('about');
     document.querySelector('#emailSection span')!.textContent = getDataFromStorage('email');
@@ -42,6 +150,11 @@ export function updateProfileDisplay() {
 
     // Load and update skills
     loadSkills();
+
+    // Load experiences
+    loadExperiences();
+
+loadLanguages()
 
     // Update education sections
     document.getElementById('educationSection')!.textContent = getDataFromStorage('education');
@@ -52,7 +165,7 @@ export function updateProfileDisplay() {
     document.getElementById('presentFromSection')!.textContent = getDataFromStorage('presentEducationFrom');
     document.getElementById('presentYearSection')!.textContent = getDataFromStorage('presentYear');
 
-    // Update social links
+    // Load social links
     (document.getElementById('linkedinLinkSection') as HTMLAnchorElement).href = getDataFromStorage('LinkedinLink');
     document.getElementById('LinkedinUserSection')!.textContent = getDataFromStorage('LinkedinUsername');
     (document.getElementById('fbUrlSection') as HTMLAnchorElement).href = getDataFromStorage('facebookLink');
@@ -86,6 +199,51 @@ function enableEditing() {
             </div>
         `;
     });
+// Get the parent section containing all experiences
+const experiencesList = document.getElementById('moreExperienceSection');
+
+if (experiencesList) {
+    // Select each individual experience item (assuming they're div elements)
+    const experienceItems = experiencesList.querySelectorAll('div');
+
+    // Iterate over each experience item and render input fields
+    experienceItems.forEach((experienceItem, index) => {
+        const companyName = (experienceItem.querySelector('.companyDetail h4')?.textContent || '').trim();
+        const experienceDetail = (experienceItem.querySelector('.companyDetail p')?.textContent || '').trim();
+        const yearSpans = experienceItem.querySelectorAll('.year span');
+        const startYear = (yearSpans[0]?.textContent || '').trim();
+        const endYear = (yearSpans[1]?.textContent || '').trim();
+
+        // Injecting dynamic input fields with ids based on index
+        experienceItem.innerHTML = `
+            <div class="year">
+                <input type="text" id="editStartYear${index}" value="${startYear}">
+                <span> - </span>
+                <input type="text" id="editEndYear${index}" value="${endYear}">
+            </div>
+            <div class="company">
+                <div class="companyNameSection">
+                    <h4>Company Name</h4>
+                    <i class="fas fa-city"></i>
+                </div>
+                <div class="companyDetail" style="margin-top: 10px;">
+                    <input type="text" id="editCompanyName${index}" value="${companyName}"><br><br>
+                    <textarea id="editExperienceDetail${index}" rows="5" cols="24">${experienceDetail}</textarea><br>
+                </div>
+            </div>
+        `;
+    });
+}
+
+// Clear existing experience data in localStorage (if applicable)
+// let experienceIndex = 1;
+// while (localStorage.getItem(`companyName${experienceIndex}`)) {
+//     localStorage.removeItem(`companyName${experienceIndex}`);
+//     localStorage.removeItem(`experience${experienceIndex}`);
+//     localStorage.removeItem(`expStartYear${experienceIndex}`);
+//     localStorage.removeItem(`expEndYear${experienceIndex}`);
+//     experienceIndex++;
+// }
 
     // Existing editing logic for other fields...
     const presentEducation = document.getElementById("presentEducationSection") as HTMLElement
@@ -114,7 +272,7 @@ function enableEditing() {
     aboutSection.innerHTML = `<input type="text" id="editAbout" value="${aboutSection.textContent}">`;
     emailSection.innerHTML = `<input type="email" id="editEmail" value="${emailSection.textContent}">`;
     numberSection.innerHTML = `<input type="text" id="editNumber" value="${numberSection.textContent}">`;
-
+    
     // Hide edit button, show save button
     document.getElementById('editBtn')!.style.display = 'none';
     document.getElementById('saveBtn')!.style.display = 'block';
@@ -173,13 +331,45 @@ function saveChanges() {
     localStorage.setItem('email', updatedEmail);
     localStorage.setItem('number', updatedNumber);
 
+    // // Clear existing experience data in localStorage
+    // let experienceIndex = 1;
+    // while (localStorage.getItem(`companyName${experienceIndex}`)) {
+    //     localStorage.removeItem(`companyName${experienceIndex}`);
+    //     localStorage.removeItem(`experience${experienceIndex}`);
+    //     localStorage.removeItem(`expStartYear${experienceIndex}`);
+    //     localStorage.removeItem(`expEndYear${experienceIndex}`);
+    //     experienceIndex++;
+    // }
+
+// Save updated experiences
+const experienceItems = document.querySelectorAll('#moreExperienceSection div');
+
+experienceItems.forEach((experienceItem, index) => {
+    // Fetch updated values from dynamically generated input fields
+    const newStartYear = (document.getElementById(`editStartYear${index}`) as HTMLInputElement)?.value;
+    const newEndYear = (document.getElementById(`editEndYear${index}`) as HTMLInputElement)?.value;
+    const newCompanyName = (document.getElementById(`editCompanyName${index}`) as HTMLInputElement)?.value;
+    const newExperienceDetail = (document.getElementById(`editExperienceDetail${index}`) as HTMLTextAreaElement)?.value;
+
+    // Save the updated data into localStorage if all fields are present
+    if (newStartYear && newEndYear && newCompanyName && newExperienceDetail) {
+        localStorage.setItem(`companyName${index + 1}`, newCompanyName);
+        localStorage.setItem(`expStartYear${index + 1}`, newStartYear);
+        localStorage.setItem(`expEndYear${index + 1}`, newEndYear);
+        localStorage.setItem(`experience${index + 1}`, newExperienceDetail);
+    }
+});
+
+    
     // Hide save button, show edit button
     document.getElementById('editBtn')!.style.display = 'block';
     document.getElementById('saveBtn')!.style.display = 'none';
 
+
     // Reload the display with updated data
     updateProfileDisplay();
 }
+
 
 // Event listeners
 document.getElementById('editBtn')?.addEventListener('click', enableEditing);
@@ -187,3 +377,12 @@ document.getElementById('saveBtn')?.addEventListener('click', saveChanges);
 
 // Initial load
 window.onload = updateProfileDisplay;
+
+
+// Event listeners for buttons
+document.getElementById('editBtn')!.addEventListener('click', enableEditing);
+document.getElementById('saveBtn')!.addEventListener('click', saveChanges);
+
+// Initial profile display
+updateProfileDisplay();
+// Reload the experience section to reflect changes

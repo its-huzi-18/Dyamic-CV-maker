@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Page</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="display.js" ></script>
     <script type="module" src="pdf.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
-    <link rel="icon" href="/IMages/cv_Favicon.png">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="IMages/icon.png" type="image/x-icon">
+    
+    <title>PDF Page</title>
 
 </head>
 <body>
@@ -22,7 +23,7 @@
             <div class="intro">
             <div class="profile">
                 <div class="photo">
-                    <img src="/IMages/profile.jpg" alt="Profile Photo" id="imageSection" />
+                    <img src="/IMages//profile.jpg" alt="Profile Photo" id="imageSection" />
                 </div>
                 <div class="bio">
                     <h1 class="name" id="displayName"></h1>
@@ -72,6 +73,12 @@
                         <span style="font-size: large; font-weight: 600;">Github</span><br>
                         <span id="gitUsernameSection" class="text-blue underline" style="font-size: small;"></span>
                     </a>
+                </div>
+                <br>
+                <div class="language-section">
+                    <h3>LANGUAGE <i class="fas fa-globe"></i></h3>
+                    <div id="languageList"></div>
+                    <!-- Add Languge  -->
                 </div>
             </div>
         </div>
@@ -125,47 +132,12 @@
                     <div class="title-icon">
                         <i class="fas fa-tools"></i>
                     </div>
-                    <span>Development Tools</span>
+                    <span>Working Experience</span>
                 </div>
 
-                <div class="detail-content">
-                    <ul class="tool-list">
-                        <li>
-                            <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45"></circle>
-                                <circle class="cbar" cx="50" cy="50" r="45" style="--percent: 0.6"></circle>
-                            </svg>
-                            <span class="tl-name">Photoshop</span>
-                            <span class="tl-exp">60%</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45"></circle>
-                                <circle class="cbar" cx="50" cy="50" r="45" style="--percent: 0.8"></circle>
-                            </svg>
-                            <span class="tl-name">Sublime</span>
-                            <span class="tl-exp">80%</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45"></circle>
-                                <circle class="cbar" cx="50" cy="50" r="45" style="--percent: 0.7"></circle>
-                            </svg>
-                            <span class="tl-name">Git</span>
-                            <span class="tl-exp">70%</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="45"></circle>
-                                <circle class="cbar" cx="50" cy="50" r="45" style="--percent: 0.74"></circle>
-                            </svg>
-                            <span class="tl-name">NPM</span>
-                            <span class="tl-exp">74%</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
+                    <div id="moreExperienceSection">
+                        <!-- Add Experience dynamically -->
+                    </div>
             <div class="detail-section interests">
                 <div class="detail-title">
                     <div class="title-icon">
@@ -217,3 +189,4 @@
     </div>
 </body>
 </html>
+

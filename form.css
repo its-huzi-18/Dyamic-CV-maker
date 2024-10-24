@@ -88,18 +88,43 @@ margin-top: 0.3%;
 
 
 .skill {
-    margin-top: 12px;   /* Add margin at the top */
+    margin-top: 12px;   
     margin-bottom: 12px;
 }
 
 .skill label {
     display: block;
-    margin-bottom: 4px; /* Add margin between the label and input */
+    margin-bottom: 4px; 
 }
 
 .skill input {
     margin-bottom: 10px;
 }
+
+/* Experience  */
+.workSection{
+line-height: 45px;
+}
+.noExperience{
+    width: 1rem;
+    height: 1rem;
+    margin: 20px 7px -10px 0;
+}
+#expBtn,#langaugeAddbtn,#addSkillBtn{
+    font-weight: bolder;
+    padding: 7px;
+}
+.form-label {
+    margin-top: 1.8rem;
+    display: block;
+}
+
+
+/* Languages  */
+.languages{
+padding: 7px 4px 24px 4px;
+}
+
 
 #submitBtn:hover{
 color: blue;
@@ -131,7 +156,6 @@ padding: 0.6vw 0.8vw;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     
     }
-    /* 50% { border-color: black; } */
 }
 
 .error-message {
