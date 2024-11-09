@@ -1,5 +1,4 @@
-// OLd wala
-// Select input fields and buttons
+
 const inputElement = document.querySelector<HTMLInputElement>("#updateName");
 const emailElement = document.querySelector<HTMLInputElement>("#updateEmail");
 const aboutElement =
@@ -344,7 +343,7 @@ document
 
 // Typing effect script
 const typingElement = document.getElementById("typingText") as HTMLDivElement;
-const typingText: string = "";
+const typingText: string = "Huzaifa Resume";  // Set your desired text here
 let typingIndex: number = 0;
 let isTypingAdding: boolean = true;
 
@@ -358,7 +357,7 @@ function updateTypingText(): void {
     }
   } else {
     typingIndex--;
-    if (typingIndex <= 0) {
+    if (typingIndex < 0) {  // Ensure typingIndex doesn't go below 0
       isTypingAdding = true;
       setTimeout(updateTypingText, 2000); // Pause before adding again
       return;

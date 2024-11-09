@@ -30,7 +30,7 @@ html {
 body {
 	margin: 0;
 	padding: 2rem 2rem;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 	background-color: var(--color-gray-light-3);
 }
 
@@ -416,54 +416,6 @@ gap: 18px;
 	font-weight: 500;
 	color:var(--color-gray-dark-1);
 }
-
-/* Interests Section */
-.outer-frame {
-	border: 1px solid var(--color-gray-dark-3);
-	border-radius: 5px;
-}
-.favor-list {
-	gap: 20px;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	align-content: center;
-}
-.favor-list > li {
-	display: flex;
-	flex: 1 0 0;
-	align-items: center;
-	justify-content: baseline;
-	flex-direction: column;
-	color: var(--profile-theme);
-	padding: 1rem 0;
-	transition: all 0.3s;
-}
-.favor-list > li > i {
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 40px;
-	width: 50px;
-	height: 50px;
-}
-.favor-list > li:hover {
-	transform: scale(1.2);
-	color: var(--color-tiffany);
-}
-.favor-list > li > span {
-	letter-spacing: 1px;
-}
-.outer-frame li{
-	text-align: center;
-}
-.outer-frame li span{
-	font-size: 0.8rem;
-}
-.outer-frame{
-padding: 0 2rem;
-}
-
 .editButton{
 	margin-bottom: 0.5%;
 	display: flex;
@@ -552,13 +504,13 @@ color:black!important
 		font-size: 80%;
 	}
 	.tool-list {
-		flex-wrap: wrap;
+		/* flex-wrap: wrap; */
 	}
 	.tool-list > li {
-		flex: 0 0 33.33%;
+		/* flex: 0 0 33.33%; */
 	}
 	.favor-list > li {
-		flex: 0 0 33.3333%;
+		/* flex: 0 0 33.3333%; */
 	}
 }
 @media (max-width: 500px) {

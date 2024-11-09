@@ -1,7 +1,7 @@
 var _a;
-// OLd wala 
+// OLd wala
 // Select input fields and buttons
-const inputElement = document.querySelector('#updateName');
+const inputElement = document.querySelector("#updateName");
 const emailElement = document.querySelector("#updateEmail");
 const aboutElement = document.querySelector("#updateAbout");
 const numberElement = document.querySelector("#updateNumber");
@@ -26,8 +26,8 @@ const addLanguageBtn = document.querySelector("#langaugeAddbtn");
 let languageCount = 0;
 function addLanguages() {
     languageCount++;
-    const languageDiv = document.createElement('div');
-    languageDiv.className = 'languages';
+    const languageDiv = document.createElement("div");
+    languageDiv.className = "languages";
     languageDiv.innerHTML = `
     <label for="langauge${languageCount}">Language${languageCount}</label><br>    
               <select name="language${languageCount}" id="language${languageCount}" required="true">
@@ -54,11 +54,11 @@ function addLanguages() {
     `;
     languageSection === null || languageSection === void 0 ? void 0 : languageSection.appendChild(languageDiv);
 }
-// Experience Function 
+// Experience Function
 let addExperienceCount = 0;
 function addExperience() {
     addExperienceCount++;
-    const experienceDiv = document.createElement('div');
+    const experienceDiv = document.createElement("div");
     experienceDiv.className = `experience`;
     experienceDiv.innerHTML = `
         <label for="companyName${addExperienceCount}" class="form-label">Company Name</label>
@@ -76,16 +76,16 @@ function addExperience() {
     addMoreExperience === null || addMoreExperience === void 0 ? void 0 : addMoreExperience.appendChild(experienceDiv);
 }
 // Select the container for skill inputs and the add button
-const skillsContainer = document.querySelector('#skillsContainer');
-const addSkillBtn = document.querySelector('#addSkillBtn');
+const skillsContainer = document.querySelector("#skillsContainer");
+const addSkillBtn = document.querySelector("#addSkillBtn");
 // Counter for skill fields
 let skillCount = 0;
 // Function to add a new skill input field
 function addSkillInput() {
     skillCount++;
     // Create new elements for the skill name and percentage
-    const skillDiv = document.createElement('div');
-    skillDiv.className = 'skill';
+    const skillDiv = document.createElement("div");
+    skillDiv.className = "skill";
     skillDiv.innerHTML = `
         <label for="skillName${skillCount}">Skill Name ${skillCount}:</label>
         <input type="text" id="skillName${skillCount}" placeholder="Enter skill name" data-required="true" /><br>
@@ -115,22 +115,24 @@ function validateForm() {
     let isValid = true;
     // Select all elements with data-required attribute
     const requiredElements = document.querySelectorAll('[data-required="true"]');
-    requiredElements.forEach(el => {
+    requiredElements.forEach((el) => {
         const errorElement = document.querySelector(`#error${el.id}`);
-        if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement || el instanceof HTMLSelectElement) {
+        if (el instanceof HTMLInputElement ||
+            el instanceof HTMLTextAreaElement ||
+            el instanceof HTMLSelectElement) {
             if (!el.value.trim()) {
-                el.classList.add('required');
-                el.classList.remove('valid');
+                el.classList.add("required");
+                el.classList.remove("valid");
                 if (errorElement) {
-                    errorElement.textContent = 'This field is required'; // Set error message
+                    errorElement.textContent = "This field is required"; // Set error message
                 }
                 isValid = false;
             }
             else {
-                el.classList.remove('required');
-                el.classList.add('valid');
+                el.classList.remove("required");
+                el.classList.add("valid");
                 if (errorElement) {
-                    errorElement.textContent = ''; // Clear error message
+                    errorElement.textContent = ""; // Clear error message
                 }
             }
         }
@@ -141,18 +143,19 @@ function validateForm() {
         const phoneNumber = numberElement.value.trim();
         const phoneNumberRegex = /^\d{11}$/; // Regular expression for exactly 11 digits
         if (!phoneNumberRegex.test(phoneNumber)) {
-            numberElement.classList.add('required');
-            numberElement.classList.remove('valid');
+            numberElement.classList.add("required");
+            numberElement.classList.remove("valid");
             if (numberErrorElement) {
-                numberErrorElement.textContent = 'Contact number must be exactly 11 digits. Only 11 digits are allowed.'; // Set error message
+                numberErrorElement.textContent =
+                    "Contact number must be exactly 11 digits. Only 11 digits are allowed."; // Set error message
             }
             isValid = false;
         }
         else {
-            numberElement.classList.remove('required');
-            numberElement.classList.add('valid');
+            numberElement.classList.remove("required");
+            numberElement.classList.add("valid");
             if (numberErrorElement) {
-                numberErrorElement.textContent = ''; // Clear error message
+                numberErrorElement.textContent = ""; // Clear error message
             }
         }
     }
@@ -163,17 +166,17 @@ function validateForm() {
         const errorElement = document.querySelector(`#errorSkill${i}`);
         if (skillName && skillPercent && errorElement) {
             if (!skillName.value.trim() || !skillPercent.value.trim()) {
-                errorElement.textContent = 'Both fields are required'; // Set error message
-                skillName.classList.add('required');
-                skillPercent.classList.add('required');
+                errorElement.textContent = "Both fields are required"; // Set error message
+                skillName.classList.add("required");
+                skillPercent.classList.add("required");
                 isValid = false;
             }
             else {
-                errorElement.textContent = ''; // Clear error message
-                skillName.classList.remove('required');
-                skillPercent.classList.remove('required');
-                skillName.classList.add('valid');
-                skillPercent.classList.add('valid');
+                errorElement.textContent = ""; // Clear error message
+                skillName.classList.remove("required");
+                skillPercent.classList.remove("required");
+                skillName.classList.add("valid");
+                skillPercent.classList.add("valid");
             }
         }
     }
@@ -203,7 +206,7 @@ function handleSubmit(event) {
             LinkedinUsername: LinkedinUserNameInput === null || LinkedinUserNameInput === void 0 ? void 0 : LinkedinUserNameInput.value,
             facebookLink: facebookLinkInput === null || facebookLinkInput === void 0 ? void 0 : facebookLinkInput.value,
             facebookUsername: facebookUserName === null || facebookUserName === void 0 ? void 0 : facebookUserName.value,
-            githubLink: githubLinkInput === null || githubLinkInput === void 0 ? void 0 : githubLinkInput.value
+            githubLink: githubLinkInput === null || githubLinkInput === void 0 ? void 0 : githubLinkInput.value,
         };
         Object.entries(data).forEach(([key, value]) => {
             if (value) {
@@ -212,8 +215,10 @@ function handleSubmit(event) {
         });
         // Save each skill and its percentage to localStorage
         for (let i = 1; i <= skillCount; i++) {
-            const skillName = (_a = (document.querySelector(`#skillName${i}`))) === null || _a === void 0 ? void 0 : _a.value.trim();
-            const skillPercent = (_b = (document.querySelector(`#skillPercent${i}`))) === null || _b === void 0 ? void 0 : _b.value.trim();
+            const skillName = (_a = document
+                .querySelector(`#skillName${i}`)) === null || _a === void 0 ? void 0 : _a.value.trim();
+            const skillPercent = (_b = document
+                .querySelector(`#skillPercent${i}`)) === null || _b === void 0 ? void 0 : _b.value.trim();
             if (skillName && skillPercent) {
                 localStorage.setItem(`skillName${i}`, skillName.toUpperCase());
                 localStorage.setItem(`skillPercent${i}`, skillPercent);
@@ -221,10 +226,14 @@ function handleSubmit(event) {
         }
         // Save each experience and its details to localStorage
         for (let i = 1; i <= addExperienceCount; i++) {
-            const companyName = (_c = (document.querySelector(`#companyName${i}`))) === null || _c === void 0 ? void 0 : _c.value.trim();
-            const experience = (_d = (document.querySelector(`#experience${i}`))) === null || _d === void 0 ? void 0 : _d.value.trim();
-            const expStartYear = (_e = (document.querySelector(`#expStartYear${i}`))) === null || _e === void 0 ? void 0 : _e.value.trim();
-            const expEndYear = (_f = (document.querySelector(`#expEndYear${i}`))) === null || _f === void 0 ? void 0 : _f.value.trim();
+            const companyName = (_c = document
+                .querySelector(`#companyName${i}`)) === null || _c === void 0 ? void 0 : _c.value.trim();
+            const experience = (_d = document
+                .querySelector(`#experience${i}`)) === null || _d === void 0 ? void 0 : _d.value.trim();
+            const expStartYear = (_e = document
+                .querySelector(`#expStartYear${i}`)) === null || _e === void 0 ? void 0 : _e.value.trim();
+            const expEndYear = (_f = document
+                .querySelector(`#expEndYear${i}`)) === null || _f === void 0 ? void 0 : _f.value.trim();
             if (companyName && experience && expStartYear && expEndYear) {
                 localStorage.setItem(`companyName${i}`, companyName);
                 localStorage.setItem(`experience${i}`, experience);
@@ -242,18 +251,18 @@ function handleSubmit(event) {
             }
         }
         // Redirect to the display page
-        window.location.href = 'display.html';
+        window.location.href = "display.html";
     }
 }
 // Attach event listener to form submit
-const formElement = document.querySelector('#personalInfoForm');
-formElement === null || formElement === void 0 ? void 0 : formElement.addEventListener('submit', handleSubmit);
+const formElement = document.querySelector("#personalInfoForm");
+formElement === null || formElement === void 0 ? void 0 : formElement.addEventListener("submit", handleSubmit);
 // Add event listener to the "Add Skill" button
-addSkillBtn === null || addSkillBtn === void 0 ? void 0 : addSkillBtn.addEventListener('click', addSkillInput);
+addSkillBtn === null || addSkillBtn === void 0 ? void 0 : addSkillBtn.addEventListener("click", addSkillInput);
 // Attach event listener to add experience button
 experienceButton === null || experienceButton === void 0 ? void 0 : experienceButton.addEventListener("click", addExperience);
 // Attach event listener to add language button
-addLanguageBtn === null || addLanguageBtn === void 0 ? void 0 : addLanguageBtn.addEventListener('click', addLanguages);
+addLanguageBtn === null || addLanguageBtn === void 0 ? void 0 : addLanguageBtn.addEventListener("click", addLanguages);
 // Initial call to add the first experience input field
 addExperience();
 // Initial call to add the first skill input field
@@ -261,10 +270,11 @@ addSkillInput();
 // Initial call to add the first langugae input field
 addLanguages();
 // Add event listener to the form submission
-(_a = document.querySelector('#personalInfoForm')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', handleSubmit);
+(_a = document
+    .querySelector("#personalInfoForm")) === null || _a === void 0 ? void 0 : _a.addEventListener("submit", handleSubmit);
 // Typing effect script
-const typingElement = document.getElementById('typingText');
-const typingText = "";
+const typingElement = document.getElementById("typingText");
+const typingText = "Huzaifa Resume"; // Set your desired text here
 let typingIndex = 0;
 let isTypingAdding = true;
 function updateTypingText() {
@@ -278,7 +288,7 @@ function updateTypingText() {
     }
     else {
         typingIndex--;
-        if (typingIndex <= 0) {
+        if (typingIndex < 0) { // Ensure typingIndex doesn't go below 0
             isTypingAdding = true;
             setTimeout(updateTypingText, 2000); // Pause before adding again
             return;
